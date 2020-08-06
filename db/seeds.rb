@@ -6,8 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Creating Seeds..."
-Ingredient.create(name: "lemon")
-Ingredient.create(name: "ice")
-Ingredient.create(name: "mint leaves")
+require 'open-uri'
+# https://github.com/flori/json
+require 'json'
+# http://stackoverflow.com/questions/9008847/what-is-difference-between-p-and-pp
+# Construct the URL we'll be calling
+url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
+Ingredient.destroy_all
+puts "Cleaned up database"
+# Actually fetch the contents of the remote URL as a String.
+buffer = open(url).read
+result = JSON.parse(buffer)
+result["drinks"].each do |i|
+  Ingredient.create!(name: i['strIngredient1'])
+end
 
 puts "#{Ingredient.count} ingredients"
