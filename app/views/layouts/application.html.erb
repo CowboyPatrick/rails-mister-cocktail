@@ -10,6 +10,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-dark">
+      <%= link_to cocktails_path  do %>
+        <%= image_tag "logo.png", alt: "live code drinks logo", width: 50, height: 50  %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>
