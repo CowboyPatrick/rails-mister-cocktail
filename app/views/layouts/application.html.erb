@@ -15,6 +15,10 @@
       <%= link_to cocktails_path  do %>
         <%= image_tag "logo.png", alt: "live code drinks logo", width: 50, height: 50  %>
       <% end %>
+      <%= link_to new_cocktail_path do %>
+        <i class="far fa-plus-square"></i>
+        <i class="fas fa-glass-cheers"></i>
+      <% end %>
     </nav>
     <%= yield %>
   </body>
